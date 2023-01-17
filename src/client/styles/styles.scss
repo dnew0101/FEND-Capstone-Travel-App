@@ -31,12 +31,17 @@ body {
 }
 
 @media only screen and (max-width: 720px) {
+    form {
+        justify-content: center;
+    }
     .formHeader {
         margin-top: 30px;
         display: flex;
         justify-content: center;
         font-size: 2.5em;
-        border-bottom: 4px solid $highlight;
+        border-bottom: 4px solid $dark;
+        padding-bottom: 10px;
+        width: 100%;
     }
     #container {
         display: flex;
