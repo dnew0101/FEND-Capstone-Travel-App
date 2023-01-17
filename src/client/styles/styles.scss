@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
+$highlight: #b2d2c8;
+$text: #efefef;
+$background: #649d9d;
+$dark: #395757;
+$gray: #2c2c2c;
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: $gray;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#to {
+    color: $gray;
+}
+
+#from {
+    color: $gray;
+}
+
+.date {
+    color: $gray;
+}
+#travel-form {
+    color: $text;
+    background: linear-gradient(45deg, $background, $background 100%);
+}
+
+@media only screen and (max-width: 720px) {
+    .formHeader {
+        display: flex;
+        justify-content: center;
+        font-size: 2.5em;
+        border-bottom: 4px solid $highlight;
+    }
+    #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #travel-form {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        width: 70%;
+        height: auto;
+        border-radius: 8px;
+        justify-content: space-between;
+    }
+    #travelTo {
+        margin-top: 40px;
+    }
+    #to {
+        padding: 5px;
+        outline: none;
+        background-color: $highlight;
+        border: 3px solid $highlight;
+        border-radius: 30px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    #travelFrom {
+        margin-bottom: 80px;
+    }
+    #from {
+        padding: 5px;
+        outline: none;
+        background-color: $highlight;
+        border: 3px solid $highlight;
+        border-radius: 30px;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    #dateFlexbox {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .datesColumn {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+    }
+    .date {
+        background-color: $highlight;
+        border: 3px solid $highlight;
+        border-radius: 30px;
+    }
+    #btn-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    #btn {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background: $dark;
+        outline: none;
+        color: $text;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-weight: 400;
+        padding: 10px 20px;
+        border-radius: 30px;
+    }
+}
+
+
+//breakpoint at 721px
+@media only screen and (min-width: 721px) {
+    #btn {
+        background: $text;
+        border-radius: 4px;
+        color: $background;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        letter-spacing: 0.1em;
+        font-weight: 400;
+        padding: 10px 30px;
+        transition: 0.5s;
+    }
+    #btn:hover {
+        letter-spacing: 0.25em;
+        box-shadow: 0 0 35px $highlight;
+    }
+}
