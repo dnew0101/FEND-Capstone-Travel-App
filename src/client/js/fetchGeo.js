@@ -1,10 +1,18 @@
-const fetchGeoData = async (geoUrl) => {
+const fetchGeoData = async (url = "", data = {}) => {
+    const response = await fetch(url, {
+        method: 'POST',
+        credentials: 'same-origin',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
     try {
-        const geoData = await fetch(geoUrl);
-        const jsonData = await geoData.json();
-        console.log(jsonData);
-    } catch(error) {
-        console.log("Error ", error);
+        const newGeoData = await response.json();
+        return newGeoData;
+    } catch (error) {
+        console.log("Error", error);
     }
 }
 

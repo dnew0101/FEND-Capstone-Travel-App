@@ -1,4 +1,5 @@
-const fetchWeatherData = async (url = "", data = {}) => {
+//TODO: make another async function that triggers the backend
+const fetchPhotoData = async (url = "", data = {}) => {
     const response = await fetch(url, {
         method: 'POST',
         credentials: 'same-origin',
@@ -9,11 +10,11 @@ const fetchWeatherData = async (url = "", data = {}) => {
         body: JSON.stringify(data),
     });
     try {
-        const newWeatherData = await response.json();
-        return newWeatherData;
+        const newPhotoData = await response.json();
+        return newPhotoData;
     } catch (error) {
         console.log("Error", error);
     }
 }
 
-export { fetchWeatherData };
+export { fetchPhotoData };

@@ -1,7 +1,7 @@
 const dotenv = require('dotenv');
 dotenv.config();
 let path = require('path');
-const port = 8000;
+const port = 8500;
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -16,15 +16,53 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 //APIS
-//Geonames constructors
-const username = process.env.USER_NAME;
+//GeoNames Username variable
+// const username = process.env.USER_NAME;
+//had to toss the GeoNames API due to their API having a syncing issue with my account
+//OpenCage API
+const OPEN_CAGE_API = process.env.OPEN_CAGE_API;
 
+//WeatherBit API key
+const WBIT_API_KEY = process.env.WBIT_API_KEY;
+
+//Pixabay API key
+const PIX_API_KEY = process.env.PIX_API_KEY;
 
 //routes
 app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'));
 });
 
+//geoname route
+app.post('/geo', async (req, res) => {
+    let destination = req.body.destination;
+    let geoUrl = `https://api.opencagedata.com/geocode/v1/json?q=${destination}&key=${OPEN_CAGE_API}`;
+    const geoData = await fetch(geoUrl);
+    const jsonGeoData = await geoData.json();
+    res.send(jsonGeoData);
+});
+//weatherbit route
+app.post('/wbit', async (req, res) => {
+    const baseUrl = "http://api.weatherbit.io/v2.0/history/daily?";
+    let lat = req.body.lat;
+    let lon = req.body.lon;
+    let start_date = req.body.start_date;
+    let end_date = req.body.end_date;
+    let weatherUrl = `${baseUrl}lat=${lat}&lon=${lon}&start_date=${start_date}&end_date=${end_date}&key=${WBIT_API_KEY}`;
+    const weatherData = await fetch(weatherUrl);
+    const jsonWeatherData = await weatherData.json();
+    res.send(jsonWeatherData);
+});
+//pixabay route
+app.post('/photo', async (req, res) => {
+    const pixBaseUrl = "https://pixabay.com/api/";
+    let location = req.body.location;
+    let isCloudy = req.body.isCloudy;
+    let pixUrl = `${pixBaseUrl}?key=${PIX_API_KEY}&q=${isCloudy}+${location}&image_type=photo&pretty=true`
+    const photoData = await fetch(pixUrl);
+    const jsonPhotoData = await photoData.json();
+    res.send(jsonPhotoData);
+})
 
 //listening
 app.listen(port, () => {
