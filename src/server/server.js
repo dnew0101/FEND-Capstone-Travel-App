@@ -2,10 +2,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 let path = require('path');
 const port = 8500;
+const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const fetch = require('node-fetch');
+const request = require('request');
 
 const app = express();
 
@@ -28,6 +30,8 @@ const WBIT_API_KEY = process.env.WBIT_API_KEY;
 //Pixabay API key
 const PIX_API_KEY = process.env.PIX_API_KEY;
 
+//SABRE API key
+const AVIATION_API_KEY = process.env.AVIATION_API_KEY;
 //routes
 app.get('/', function (req, res) {
     res.sendFile(path.resolve('dist/index.html'));
@@ -63,6 +67,8 @@ app.post('/photo', async (req, res) => {
     const jsonPhotoData = await photoData.json();
     res.send(jsonPhotoData);
 })
+//TODO: make image GET route handler
+
 
 //listening
 app.listen(port, () => {
