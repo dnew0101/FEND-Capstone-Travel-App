@@ -8,3 +8,79 @@
         display: none;
     }
 }
+
+$highlight: #b2d2c8;
+$text: #efefef;
+$background: #649d9d;
+$dark: #395757;
+$gray: #2c2c2c;
+
+//travel-list-display styling
+.travel-card {
+    background-color: $background;
+}
+#floating-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    width: 100%;
+    background-color: $dark;
+    justify-content: space-evenly;
+}
+a {
+    text-decoration: none;
+}
+@media only screen and (max-width: 720px) {
+    #travel-list-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .travel-card {
+        color: $text;
+        margin-top: 40px;
+        display: grid;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 70%;
+        height: auto;
+        border-radius: 8px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 0.5fr 0.5fr;
+        grid-template-areas: 
+        "img img"
+        "label content"
+        "weather weather";
+        margin-bottom: 350px;
+    }
+    .nav-item {
+        height: 75px;
+        width: 75px;
+        font-size: 3em;
+    }
+    img {
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+    }
+    .photo-div {
+        border-radius: 8px;
+        grid-area: img;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .label-flexbox {
+        grid-area: label;
+    }
+    .content-flexbox {
+        grid-area: content;
+    }
+    .weather-report {
+        grid-area: weather;
+    }
+}

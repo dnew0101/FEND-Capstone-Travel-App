@@ -2,9 +2,10 @@ import { fetchGeoData } from "./fetchGeo";
 import { fetchWeatherData } from "./fetchWeather";
 import { bubbleSort } from "./bubbleSort";
 import { historyCalc } from "./daysUntilCalc";
+import { averageCalc } from "./average";
 import { dateChecker } from "./isValidEntry";
 import { fetchPhotoData } from "./fetchPhoto";
-import { createObject, renderCard } from "./createObject";
+import { createObject, renderCard, renderCards} from "./createObject";
 
 //handle submit function
 async function handleSubmit() {
@@ -28,7 +29,7 @@ async function handleSubmit() {
         console.log(newWeatherData);
         //TODO: continue this string with the Pixabay API; use keywords to search
         let cloudData;
-        if (newWeatherData.data[0].clouds > 40) {
+        if (averageCalc(newWeatherData.data) > 40) {
             cloudData = "cloudy";
         } else {
             cloudData = "sunny";
@@ -42,11 +43,9 @@ async function handleSubmit() {
             location: destination});
         console.log(newPhotoData);
         
-        let photoLink = newPhotoData.hits[0].largeImageURL;
-        //TODO: fetch image from the backend with this imageUrl link
-        
+        let photoLink = newPhotoData.hits[0].largeImageURL;        
         let newCard = createObject(destination, hometown, departureDate, returnDate, cloudData, upperTemp, lowerTemp, photoLink);
-        renderCard(newCard);
+        renderCards(newCard);
     }
 }
 

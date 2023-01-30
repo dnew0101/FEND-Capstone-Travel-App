@@ -67,8 +67,6 @@ app.post('/photo', async (req, res) => {
     const jsonPhotoData = await photoData.json();
     res.send(jsonPhotoData);
 })
-//TODO: make image GET route handler
-
 
 //listening
 app.listen(port, () => {

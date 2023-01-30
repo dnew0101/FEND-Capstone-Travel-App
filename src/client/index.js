@@ -19,6 +19,13 @@ window.addEventListener('DOMContentLoaded', () => {
     })
 });
 
+const addButton = document.getElementById('add-button');
+
+addButton.addEventListener('click', () => {
+    toggleDisplay();
+});
+
+
 function toggleDisplay() {
     listDisplay.classList.toggle("inactive-class");
     formDisplay.classList.toggle("inactive-class")
