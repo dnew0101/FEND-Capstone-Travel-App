@@ -31,21 +31,29 @@ const renderCard = (index) => {
     photoDiv.setAttribute('class', 'photo-div');
     divCard.appendChild(photoDiv);
 
+    let labelFlexbox = document.createElement('div');
+    labelFlexbox.setAttribute('class', 'label-flexbox');
+    divCard.appendChild(labelFlexbox);
+
+    let contentFlexbox = document.createElement('div');
+    contentFlexbox.setAttribute('class', 'content-flexbox');
+    divCard.appendChild(contentFlexbox);
+
     let tripNameLabel = document.createElement('label');
     tripNameLabel.setAttribute('class', 'trip-name-label');
-    divCard.appendChild(tripNameLabel);
+    labelFlexbox.appendChild(tripNameLabel);
 
     let tripNameDiv = document.createElement('div');
     tripNameDiv.setAttribute('class', 'trip-name-div');
-    divCard.appendChild(tripNameDiv);
+    contentFlexbox.appendChild(tripNameDiv);
 
     let daysUntilLabel = document.createElement('label');
     daysUntilLabel.setAttribute('class', 'days-until-label');
-    divCard.appendChild(daysUntilLabel);
+    labelFlexbox.appendChild(daysUntilLabel);
 
     let daysUntilDiv = document.createElement('div');
     daysUntilDiv.setAttribute('class', 'days-until-div');
-    divCard.appendChild(daysUntilDiv);
+    contentFlexbox.appendChild(daysUntilDiv);
 
     let weatherReportDiv = document.createElement('div');
     weatherReportDiv.setAttribute('class', 'weather-report-div');
@@ -62,8 +70,6 @@ const renderCard = (index) => {
   
       weatherReportDiv.innerHTML = `High - ${divCardObject.tempHigh}°C / Low - ${divCardObject.tempLow}°C`;
       weatherReportDiv.innerHTML += `<br>Mostly ${divCardObject.cloudy} during your stay!`;
-    } else {
-      photoDiv.innerHTML = "No trips listed... Add a new one!"
     }
 };
 const renderCards = () => {

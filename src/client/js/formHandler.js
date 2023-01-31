@@ -6,6 +6,7 @@ import { averageCalc } from "./average";
 import { dateChecker } from "./isValidEntry";
 import { fetchPhotoData } from "./fetchPhoto";
 import { createObject, renderCard, renderCards} from "./createObject";
+import { storeTripsInLocalStorage } from "../index";
 
 //handle submit function
 async function handleSubmit() {
@@ -46,6 +47,7 @@ async function handleSubmit() {
         let photoLink = newPhotoData.hits[0].largeImageURL;        
         let newCard = createObject(destination, hometown, departureDate, returnDate, cloudData, upperTemp, lowerTemp, photoLink);
         renderCards(newCard);
+        storeTripsInLocalStorage();
     }
 }
 

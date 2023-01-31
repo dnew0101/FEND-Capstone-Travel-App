@@ -8,6 +8,11 @@
         display: none;
     }
 }
+#floating-nav {
+    &.inactive-class {
+        display: none;
+    }
+}
 
 $highlight: #b2d2c8;
 $text: #efefef;
@@ -49,6 +54,7 @@ a {
         padding-right: 20px;
         width: 70%;
         height: auto;
+        max-height: 600px;
         border-radius: 8px;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 0.5fr 0.5fr;
@@ -56,7 +62,7 @@ a {
         "img img"
         "label content"
         "weather weather";
-        margin-bottom: 350px;
+        margin-bottom: 300px;
     }
     .nav-item {
         height: 75px;
@@ -75,12 +81,75 @@ a {
         margin-bottom: 20px;
     }
     .label-flexbox {
+        display: flex;
+        flex-direction: column;
         grid-area: label;
     }
     .content-flexbox {
+        display: flex;
+        flex-direction: column;
         grid-area: content;
     }
-    .weather-report {
+    .weather-report-div {
         grid-area: weather;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 721px) {
+    #travel-list-display {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .travel-card {
+        color: $text;
+        margin-top: 40px;
+        display: grid;
+        padding: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 40%;
+        max-width: 390px;
+        height: auto;
+        max-height: 444px;
+        border-radius: 8px;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.75fr 0.5fr 0.5fr;
+        grid-template-areas: 
+        "img img"
+        "label content"
+        "weather weather";
+        margin-bottom: 300px;
+    }
+    .nav-item {
+        height: 75px;
+        width: 75px;
+        font-size: 3em;
+    }
+    img {
+        border-radius: 8px;
+        width: 100%;
+        height: 100%;
+    }
+    .photo-div {
+        border-radius: 8px;
+        grid-area: img;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .label-flexbox {
+        display: flex;
+        flex-direction: column;
+        grid-area: label;
+    }
+    .content-flexbox {
+        display: flex;
+        flex-direction: column;
+        grid-area: content;
+    }
+    .weather-report-div {
+        grid-area: weather;
+        width: 100%;
     }
 }
