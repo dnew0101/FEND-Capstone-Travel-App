@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 const OPEN_CAGE_API = process.env.OPEN_CAGE_API;
 
 //WeatherBit API key
-const WBIT_API_KEY = process.env.WBIT_API_KEY;
+const OPEN_WEATHER_KEY = process.env.OPEN_WEATHER_KEY;
 
 //Pixabay API key
 const PIX_API_KEY = process.env.PIX_API_KEY;
@@ -47,12 +47,12 @@ app.post('/geo', async (req, res) => {
 });
 //weatherbit route
 app.post('/wbit', async (req, res) => {
-    const baseUrl = "http://api.weatherbit.io/v2.0/history/daily?";
+    const baseUrl = "https://history.openweathermap.org/data/2.5/history/city?";
     let lat = req.body.lat;
     let lon = req.body.lon;
     let start_date = req.body.start_date;
     let end_date = req.body.end_date;
-    let weatherUrl = `${baseUrl}lat=${lat}&lon=${lon}&start_date=${start_date}&end_date=${end_date}&key=${WBIT_API_KEY}`;
+    let weatherUrl = `${baseUrl}lat=${lat}&lon=${lon}&type=hour&start=${start_date}&end=${end_date}&units=imperial&appid=${OPEN_WEATHER_KEY}`;
     const weatherData = await fetch(weatherUrl);
     const jsonWeatherData = await weatherData.json();
     res.send(jsonWeatherData);

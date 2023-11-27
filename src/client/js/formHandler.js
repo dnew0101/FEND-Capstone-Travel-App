@@ -1,7 +1,7 @@
 import { fetchGeoData } from "./fetchGeo";
 import { fetchWeatherData } from "./fetchWeather";
 import { bubbleSort } from "./bubbleSort";
-import { historyCalc } from "./daysUntilCalc";
+import { historyCalc, convertToUnixTime } from "./daysUntilCalc";
 import { averageCalc } from "./average";
 import { dateChecker } from "./isValidEntry";
 import { fetchPhotoData } from "./fetchPhoto";
@@ -22,11 +22,16 @@ async function handleSubmit() {
         console.log(newGeoData.results[0].geometry.lat);
         let weatherStartDate = historyCalc(departureDate);
         let weatherEndDate = historyCalc(returnDate);
+
+            //new API requires Unix time, so the following two lines convert my previous data into Unix time
+        let unixStart = convertToUnixTime(weatherStartDate);
+        let unixEnd = convertToUnixTime(weatherEndDate);
+
         let newWeatherData = await fetchWeatherData('/wbit', {
             lat: newGeoData.results[0].geometry.lat,
             lon: newGeoData.results[0].geometry.lng,
-            start_date: weatherStartDate,
-            end_date: weatherEndDate});
+            start_date: unixStart,
+            end_date: unixEnd});
         console.log(newWeatherData);
         //TODO: continue this string with the Pixabay API; use keywords to search
         let cloudData;
@@ -35,9 +40,9 @@ async function handleSubmit() {
         } else {
             cloudData = "sunny";
         }
-        let tempArray = parseData(newWeatherData);
-        let upperTemp = tempArray[(tempArray.length)-1];
-        let lowerTemp = tempArray[0];
+
+        let upperTemp = main.temp_max;
+        let lowerTemp = main.temp_min;
 
         let newPhotoData = await fetchPhotoData('/photo', {
             isCloudy: cloudData,

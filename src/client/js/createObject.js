@@ -1,6 +1,7 @@
 import { trips } from "../index.js";
 import { dayCalc } from "./daysUntilCalc.js";
-//creates an object
+
+//creates an object/component with props
 const createObject = (destination, hometown, departureDate, returnDate, cloudData, upperTemp, lowerTemp, photoLink) => {
     let object = {
         travelTo: destination,

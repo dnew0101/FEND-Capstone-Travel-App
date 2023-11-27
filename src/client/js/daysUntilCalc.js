@@ -21,6 +21,16 @@ const historyCalc = (date) => {
     let formattedDate = weatherDate.format("YYYY-MM-DD")
     return formattedDate;
 }
+const convertToUnixTime = (inputDate) => {
+    const [year, month, day] = inputDate.split('/').map(Number);
+
+    const utcDate = new Date(Date.UTC(year, month - 1, day));
+
+    const unixTime = utcDate.getTime();
+
+    return unixTime;
+}
 
 export { dayCalc };
 export { historyCalc };
+export { convertToUnixTime };
